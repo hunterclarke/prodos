@@ -197,3 +197,5 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Custom
+assets/bundles/*

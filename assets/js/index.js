@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import Vue from 'vue'
+import App from './App.vue'
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Django + React = Awesomeness </h1>
-      </div>
-    );
-  }
-}
+Vue.config.productionTip = false
 
-ReactDOM.render(<App />, document.getElementById('app'));
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
+});

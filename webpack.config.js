@@ -1,9 +1,9 @@
-var path = require("path")
-var webpack = require('webpack')
-var BundleTracker = require('webpack-bundle-tracker')
+const path = require('path');
+const BundleTracker = require('webpack-bundle-tracker')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  context: __dirname,
+  mode: 'development',
 
   entry: './assets/js/index.js',
 
@@ -12,18 +12,34 @@ module.exports = {
     filename: "[name]-[hash].js",
   },
 
-  plugins: [
-    new BundleTracker({filename: './webpack-stats.json'}),
-  ],
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    }
+  },
 
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: { presets: ["@babel/env"] }
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
-    ],
+      {
+        test: /\.js$/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
+      }
+    ]
   },
+
+  plugins: [
+    new BundleTracker({filename: './webpack-stats.json'}),
+    new VueLoaderPlugin()
+  ]
 }
