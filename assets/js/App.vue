@@ -1,8 +1,17 @@
 <template>
-  <h1>Hello world</h1>
+  <Day :store=store />
 </template>
 
 <script>
+import Day from './Day.vue'
+
+export default {
+  props: ['store'],
+
+  components: {
+    Day,
+  }
+}
 </script>
 
 <style>
