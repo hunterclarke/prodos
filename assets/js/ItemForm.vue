@@ -14,11 +14,11 @@
 import moment from 'moment';
 
 export default {
-  props: ["store"],
+  props: ['store', 'date'],
 
   data: function() {
     return {
-      title: "",
+      title: '',
       type: 1,
     };
   },
@@ -26,12 +26,11 @@ export default {
   methods: {
     save: function() {
       this.store.createItemAction({
-        id: 5,
         blockType: parseInt(this.type, 10),
-        cursor: moment(),
+        cursor: this.date,
         data: {
           title: this.title,
-          content: "This is a description of this todo",
+          content: 'This is a description of this todo',
         }
       });
       this.$emit('save');

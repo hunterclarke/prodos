@@ -42,7 +42,7 @@ let store = {
       {
         id: 4,
         blockType: TODO,
-        cursor: moment("3019-03-01"),
+        cursor: moment("2019-03-01"),
         data: {
           title: "You should not see this todo",
           content: "This is a description of this todo",
@@ -53,7 +53,13 @@ let store = {
 
   createItemAction(item) {
     if (this.debug) console.log('createItemAction triggered with', item)
+    item.id = this.state.items[this.state.items.length - 1].id + 1;
     this.state.items.push(item);
+  },
+
+  getItemsForDate(date) {
+    if (this.debug) console.log('getItemsForDate triggered with', date)
+    return this.state.items.filter(item => item.cursor.isSame(date, 'day'));
   },
 }
 

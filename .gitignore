@@ -199,3 +199,4 @@ typings/
 
 # Custom
 assets/bundles/*
+.DS_Store
